@@ -1,8 +1,7 @@
-import { handle } from 'hono/vercel'
-import { app } from '../dist/servidor/api.js'
+import { app } from '../dist/servidor/api.js';
 
-export const config = {
-  runtime: 'edge',
-}
+const PORT = process.env.PORT || 3000;
 
-export default handle(app)
+app.listen(PORT, () => {
+  console.log(`Servidor corriendo en el puerto ${PORT}`);
+});
