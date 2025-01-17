@@ -1,32 +1,32 @@
-import { Hono } from 'hono';
-import { cors } from 'hono/cors';
-import fs from 'node:fs';
+importar { Hono } desde 'hono';
+importar { cors } desde 'hono/cors';
+importar fs desde 'node:fs';
 
-export const app = new Hono();
+const app = new Hono();
 
 app.use('*', cors());
 
-function registerRoute(path) {
-  app.get(path, async (c) => {
-    const json = fs.readFileSync(`./datos${path}/index.json`, 'utf8');
+function registrarRuta(ruta) {
+  app.get(ruta, async (c) => {
+    const json = fs.readFileSync(`./datos${ruta}/index.json`, 'utf8');
     return c.json(JSON.parse(json));
   });
 }
 
-function registerRoutes(dir) {
-  const files = fs.readdirSync(dir);
-  for (const file of files) {
-    const route = `${dir}/${file}`;
-    if (fs.statSync(route).isDirectory()) {
-      registerRoutes(route);
+function registrarRutas(directorio) {
+  const archivos = fs.readdirSync(directorio);
+  for (const archivo of archivos) {
+    const ruta = `${directorio}/${archivo}`;
+    if (fs.statSync(ruta).isDirectory()) {
+      registrarRutas(ruta);
     } else {
-      registerRoute(
-        route.replace(/^\.\/datos/, '').replace(/\/index\.json$/, '')
+      registrarRuta(
+        ruta.replace(/^\.\/datos/, '').replace(/\/index\.json$/, ''),
       );
     }
   }
 }
 
-registerRoutes('./datos');
+registrarRutas('./datos');
 
 export default app;
