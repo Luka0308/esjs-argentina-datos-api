@@ -1,8 +1,13 @@
 {
   "name": "esjs-argentina-datos-api",
-  "version": "1.0.0",
-  "description": "API para datos de Argentina usando Node.js",
-  "main": "api/index.js",
+  "private": true,
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/enzonotario/esjs-argentina-datos-api.git"
+  },
+  "author": "Enzo Notario <hi@enzonotario.me>",
+  "license": "MIT",
   "scripts": {
     "start": "node api/index.js",
     "dev": "vite --host",
@@ -18,19 +23,20 @@
     "api:build": "vite build --config vite.api.config.js --ssr --mode=production",
     "format": "prettier --write src"
   },
-  "dependencies": {
-    "express": "^4.18.2",
-    "hono": "^3.0.0"
-  },
   "devDependencies": {
-    "vite": "^4.0.0",
-    "vitepress": "^1.0.0",
-    "vitest": "^1.0.0",
-    "prettier": "^2.0.0",
-    "pnpm": "^8.0.0"
-  },
-  "keywords": ["api", "argentina", "datos"],
-  "author": "Luka",
-  "license": "MIT"
+    "@es-js/vite-plugin-esjs": "^0.1.0-beta.1",
+    "@hono/vite-dev-server": "^0.0.12",
+    "axios": "^1.6.7",
+    "cheerio": "1.0.0-rc.12",
+    "collect.js": "^4.36.1",
+    "date-fns": "^3.2.0",
+    "fs": "0.0.1-security",
+    "glob": "^10.3.3",
+    "hono": "^3.3.2",
+    "prettier": "^3.0.0",
+    "vite": "^4.4.9",
+    "vite-plugin-node": "^3.3.0",
+    "vitepress": "^1.0.0-alpha.62",
+    "vitest": "^0.34.1"
+  }
 }
-
