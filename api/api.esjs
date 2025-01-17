@@ -6,6 +6,7 @@ const app = new Hono();
 
 app.use('*', cors());
 
+// Función para registrar rutas
 function registerRoute(path) {
   app.get(path, async (c) => {
     const json = fs.readFileSync(`./datos${path}/index.json`, 'utf8');
@@ -13,6 +14,7 @@ function registerRoute(path) {
   });
 }
 
+// Función para registrar todas las rutas del directorio
 function registerRoutes(dir) {
   const files = fs.readdirSync(dir);
   for (const file of files) {
@@ -27,6 +29,14 @@ function registerRoutes(dir) {
   }
 }
 
+// Registrar las rutas desde el directorio `datos`
 registerRoutes('./datos');
+
+// Escuchar en el puerto proporcionado por Render
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log(`Servidor corriendo en el puerto ${PORT}`);
+});
 
 export default app;
