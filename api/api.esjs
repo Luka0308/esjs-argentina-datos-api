@@ -1,6 +1,7 @@
 import { Hono } from 'hono';
 import { cors } from 'hono/cors';
 import fs from 'node:fs';
+import { createServer } from 'node:http';
 
 const app = new Hono();
 
@@ -32,11 +33,10 @@ function registerRoutes(dir) {
 // Registrar las rutas desde el directorio `datos`
 registerRoutes('./datos');
 
-// Escuchar en el puerto proporcionado por Render
+// Crear servidor HTTP
 const PORT = process.env.PORT || 3000;
+const server = createServer(app.fetch);
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log(`Servidor corriendo en el puerto ${PORT}`);
 });
-
-export default app;
