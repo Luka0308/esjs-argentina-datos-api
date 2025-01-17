@@ -1,4 +1,4 @@
-import { app } from '../dist/servidor/api.js';
+import app from './api.esjs';
 
 const PORT = process.env.PORT || 3000;
 
