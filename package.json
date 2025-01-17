@@ -9,7 +9,7 @@
   "author": "Enzo Notario <hi@enzonotario.me>",
   "license": "MIT",
   "scripts": {
-    "start": "node api/index.js",
+    "start": "node dist/servidor/api.js",
     "dev": "vite --host",
     "build": "vite build --ssr --mode=production",
     "cron": "pnpm run cron:run",
