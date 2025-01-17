@@ -5,31 +5,25 @@ import devServer from '@hono/vite-dev-server';
 
 export default defineConfig({
   plugins: [
-    // Configuración del plugin EsJS
-    EsJS(),
-    // Configuración del servidor de desarrollo de Hono
-    devServer({
-      entry: './api/api.esjs',
-    }),
+    EsJS(), // Plugin EsJS
+    devServer({ entry: './api/api.esjs' }), // Configuración del servidor de desarrollo
   ],
-
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./api', import.meta.url)), // Alias para la carpeta `api`
     },
-    extensions: ['.js', '.json', '.jsx', '.mjs', '.ts', '.tsx', '.esjs'], // Extensiones compatibles
+    extensions: ['.js', '.json', '.jsx', '.mjs', '.ts', '.tsx', '.esjs'], // Extensiones soportadas
   },
-
   build: {
-    outDir: './dist', // Carpeta de salida
+    outDir: 'dist', // Carpeta de salida
     emptyOutDir: true, // Limpia la carpeta antes de cada build
     rollupOptions: {
       input: './api/api.esjs', // Archivo principal de entrada
       output: {
-        format: 'esm', // Formato del módulo de salida
-        entryFileNames: 'servidor/[name].js', // Nombre del archivo de entrada
-        chunkFileNames: 'servidor/[name].js', // Nombres de los chunks
-        assetFileNames: 'servidor/[name].[ext]', // Nombres de los archivos de recursos
+        format: 'esm', // Formato del módulo
+        entryFileNames: 'servidor/[name].js', // Archivo principal
+        chunkFileNames: 'servidor/[name].js', // Archivos adicionales
+        assetFileNames: 'servidor/[name].[ext]', // Recursos adicionales
         exports: 'auto', // Exportación automática
       },
     },
